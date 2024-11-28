@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ep. 3 - Lists and Computed Values</title>
+        <script src="https://unpkg.com/vue@3"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="h-full grid place-items-center">
+        <div id="app">
+            <article>
+                <section v-show="inProgressAssignments.length">
+                    <h2 class="font-semibold mb-3 text-blue-500">
+                        In Progress
+                    </h2>
+                    <ul>
+                        <li v-for="assignment in inProgressAssignments">
+                            <label class="select-none cursor-pointer">
+                                {{assignment.title}}
+                                <input
+                                    v-model="assignment.completed"
+                                    type="checkbox"
+                                    class="cursor-pointer ml-1"
+                            /></label>
+                        </li>
+                    </ul>
+                </section>
+                <section v-show="completedAssignments.length">
+                    <h2 class="font-semibold my-3 text-green-500">Completed</h2>
+                    <ul>
+                        <li v-for="assignment in completedAssignments">
+                            <label class="select-none cursor-pointer">
+                                {{assignment.title}}
+                                <input
+                                    v-model="assignment.completed"
+                                    type="checkbox"
+                                    class="cursor-pointer ml-1"
+                            /></label>
+                        </li>
+                    </ul>
+                </section>
+            </article>
+        </div>
+
+        <script>
+            const app = {
+                data() {
+                    return {
+                        assignments: [
+                            { title: 'Finish project', completed: false },
+                            { title: 'Read chapter 4', completed: false },
+                            { title: 'Turn in homework', completed: false }
+                        ]
+                    };
+                },
+                computed: {
+                    inProgressAssignments() {
+                        return this.assignments.filter(
+                            (assignment) => !assignment.completed
+                        );
+                    },
+                    completedAssignments() {
+                        return this.assignments.filter(
+                            (assignment) => assignment.completed
+                        );
+                    }
+                }
+            };
+            Vue.createApp(app).mount('#app');
+        </script>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ep. 4 - Your First Vue Component</title>
+        <script src="https://unpkg.com/vue@3"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body class="h-full grid place-items-center">
+        <div id="app">
+            <app-button>Send</app-button>
+        </div>
+        <script>
+            const AppButton = {
+                data() {
+                    return {
+                        processing: true
+                    };
+                },
+                template: `<button :disabled="processing" class="disabled:cursor-not-allowed bg-blue-500 rounded border px-5 py-2"><slot /></button>`
+            };
+            const App = {
+                components: {
+                    AppButton
+                }
+            };
+            Vue.createApp(App).mount('#app');
+        </script>
+    </body>
+</html>

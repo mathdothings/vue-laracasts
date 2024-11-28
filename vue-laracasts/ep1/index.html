@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue - Laracasts - Ep. 01</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- v-model does two things: 1. binds the value of the input to the value definite in your 
+            data and 2. listen to the value's change to update it's state -->
+      <input type="text" v-model="greeting" />
+      <p>{{ greeting }} {{ greeting.length }}</p>
+    </div>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            greeting: "Hello, world from Vue!",
+          };
+        },
+        mounted() {
+          setTimeout(() => {
+            this.greeting = "Changed!";
+          }, 3000);
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
