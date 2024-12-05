@@ -12,13 +12,20 @@ const Assignments = {
                     <assignment-list :assignments="inProgressAssignments" title="In Progress">
                             <assignment-create @add="add"></assignment-create>
                     </assignment-list>
-                    <assignment-list :assignments="completedAssignments" title="Completed"></assignment-list>
+                    <assignment-list
+                        v-show="toggle"
+                        :assignments="completedAssignments"
+                        title="Completed"
+                        toggleable
+                        @toggleAssignmentList="toggle = !toggle">
+                    </assignment-list>
             </div>
         </article>
     `,
     data() {
         return {
-            assignments: tasks
+            assignments: tasks,
+            toggle: true
         };
     },
     computed: {
