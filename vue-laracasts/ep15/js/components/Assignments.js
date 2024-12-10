@@ -1,4 +1,4 @@
-import ListTitle from './ListTitle.js';
+import ToggledAssignmentList from './ToggledAssignmentList.js';
 import AssignmentList from './AssignmentList.js';
 import AssignmentCreate from './AssignmentCreate.js';
 import RandomList from '../generateList.js';
@@ -6,26 +6,26 @@ const randomList = new RandomList();
 const tasks = randomList.randomTaskList(randomList.base, true, 0, 10);
 
 const Assignments = {
-    components: { ListTitle, AssignmentList, AssignmentCreate },
+    components: { ToggledAssignmentList, AssignmentList, AssignmentCreate },
     template: `
-        <article class="p-4">
+        <article class="p-2">
             <div class="flex gap-2">
-                <list-title
+                <toggled-assignment-list
                     v-if="toggleInProgress === false"
                     :assignmentList="inProgressAssignments"
                     :assignmentListTitle="inProgressAssignmentListTitle"
                     @click="toggleInProgress = !toggleInProgress"
                 >
-                </list-title>
-                <list-title
+                </toggled-assignment-list>
+                <toggled-assignment-list
                     v-if="toggleCompleted === false"
                     :assignmentList="completedAssignments"
                     :assignmentListTitle="completedAssignmentListTitle"
                     @click="toggleCompleted = !toggleCompleted"
                 >
-                </list-title>
+                </toggled-assignment-list>
             </div>
-            <div class="grid lg:grid-cols-2 sm:grid-cols-1 gap-4 width-full">
+            <div class="grid lg:grid-cols-2 sm:grid-cols-1 gap-4 w-80">
                 <assignment-list
                 v-show="toggleInProgress"
                 :assignments="inProgressAssignments"

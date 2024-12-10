@@ -1,6 +1,6 @@
 const AssignmentTags = {
     template: `
-        <div class="flex gap-2">
+        <div class="flex gap-2 flex-wrap">
             <button 
                 class="px-2 py-1 rounded text-xs"
                 :class="{'bg-blue-500 hover:bg-blue-600': tag === currentTag},
